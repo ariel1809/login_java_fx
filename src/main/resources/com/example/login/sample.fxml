@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.HelloController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="268.0" style="-fx-background-color: orange;">
+         <children>
+            <ImageView fitHeight="137.0" fitWidth="132.0" layoutX="50.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@7375206.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="50.0" layoutY="213.0" prefHeight="45.0" prefWidth="146.0" text="Connexion">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="400.0" prefWidth="407.0">
+         <children>
+            <ImageView fitHeight="68.0" fitWidth="83.0" layoutX="151.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@2886389.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="31.0" layoutY="152.0" text="Username">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="198.0" text="Password">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_username" layoutX="151.0" layoutY="150.0" />
+            <TextField fx:id="tf_password" layoutX="151.0" layoutY="196.0" />
+            <Button fx:id="bt_login" layoutX="168.0" layoutY="263.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="93.0" style="-fx-background-color: orange;" text="Login">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="69.0" layoutY="312.0" prefHeight="45.0" prefWidth="146.0" text="Pas de compte?">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="bt_sign_up" layoutX="192.0" layoutY="323.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Sign Up!" textFill="#044da1" underline="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
