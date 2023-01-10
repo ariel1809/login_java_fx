@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("sample.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Hello!");
+        stage.setTitle("Log In!");
         Image ico = new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("515450.png")));
         stage.getIcons().add(ico);
         stage.setScene(scene);

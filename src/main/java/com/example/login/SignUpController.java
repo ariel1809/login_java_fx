@@ -32,6 +32,6 @@ public class SignUpController implements Initializable {
             alert.show();
         }
 
-        bt_log_in.setOnAction(event -> DBUtils.changeScene(event,"sample.fxml","Sign Up!",null));
+        bt_log_in.setOnAction(event -> DBUtils.changeScene(event,"sample.fxml","Log In!",null));
     }
 }
