@@ -8,14 +8,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.SignUpController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="239.0" style="-fx-background-color: orange;">
          <children>
             <ImageView fitHeight="156.0" fitWidth="159.0" layoutX="25.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../Téléchargements/6160718.png" />
+                  <Image url="@6160718.png" />
                </image>
             </ImageView>
             <Label layoutX="51.0" layoutY="248.0" prefHeight="30.0" prefWidth="130.0" text="Register">
@@ -49,7 +48,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="bt_log_in" layoutX="255.0" layoutY="244.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Log In!" textFill="#060dd3" underline="true">
+            <Button fx:id="bt_log_in" layoutX="255.0" layoutY="244.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Log In!" textFill="#060dd3" underline="true">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
