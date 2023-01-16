@@ -8,14 +8,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.sql.*;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Properties;
 
 public class DBUtils {
 
-    public static void changeScene(ActionEvent event, String fxmlFile, String title, String username){
+    public static void changeScene(ActionEvent event, String fxmlFile, String title, String username, String name){
         Parent root = null;
 
         if (username != null){
@@ -23,7 +27,8 @@ public class DBUtils {
                 FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
                 root = loader.load();
                 LoggedInController loggedInController = loader.getController();
-                loggedInController.setUserInformations(username);
+                loggedInController.setUserInformations(name);
+                loggedInController.sendMail(username);
             }catch (IOException e){
                 e.printStackTrace();
             }
@@ -41,7 +46,7 @@ public class DBUtils {
         stage.show();
     }
 
-    public static void signUpUser(ActionEvent event, String username, String password){
+    public static void signUpUser(ActionEvent event, String username, String password, String name, String phoneNumber){
 
         Connection connection = null;
         PreparedStatement psInsert = null;
@@ -60,12 +65,14 @@ public class DBUtils {
                 alert.setContentText("Veuillez changer ce username");
                 alert.show();
             }else {
-                psInsert = connection.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
+                psInsert = connection.prepareStatement("INSERT INTO users (username, password, name, phoneNumber) VALUES (?, ?, ?, ?)");
                 psInsert.setString(1,username);
                 psInsert.setString(2,password);
+                psInsert.setString(3,name);
+                psInsert.setString(4,phoneNumber);
                 psInsert.executeLargeUpdate();
 
-                changeScene(event, "logged-in.fxml", "Bienvenue!", username);
+                changeScene(event, "logged-in.fxml", "Bienvenue!", username, name);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,9 +131,10 @@ public class DBUtils {
             }else {
                 while (resultSet.next()){
                     String retrievedPassword = resultSet.getString("password");
+                    System.out.println(retrievedPassword);
 
                     if (retrievedPassword.equals(password)){
-                        changeScene(event, "logged-in.fxml", "Bienvenue!", username);
+                        changeScene(event, "logged-in.fxml", "Bienvenue!", username, null);
                     }else {
                         System.out.println("password incorrect");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -163,5 +171,30 @@ public class DBUtils {
                 }
             }
         }
+    }
+
+    public static void sendEmail(String email) throws MessagingException {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", true);
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.starttls.enable", true);
+        properties.put("mail.transport.protocol", "smtp");
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("stevekamga18@gmail.com", "ebndtinquknsqxtc");
+            }
+        });
+
+        Message message = new MimeMessage(session);
+        message.setSubject("Test Mail Java fx");
+        message.setContent("Bonjour Ariel","text/html");
+
+        Address address = new InternetAddress(email);
+        message.setRecipient(Message.RecipientType.TO, address);
+
+        Transport.send(message);
     }
 }

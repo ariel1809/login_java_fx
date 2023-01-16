@@ -18,13 +18,17 @@ public class SignUpController implements Initializable {
     @FXML
     private TextField tf_username;
     @FXML
-    private TextField tf_pasword;
+    private TextField tf_password;
+    @FXML
+    private TextField tf_name;
+    @FXML
+    private TextField tf_phoneNumber;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if (tf_username.getText().trim().isEmpty() && tf_pasword.getText().trim().isEmpty()){
-            bt_sign_up.setOnAction(event -> DBUtils.signUpUser(event, tf_username.getText(), tf_pasword.getText()));
+        if (tf_username.getText().trim().isEmpty() && tf_password.getText().trim().isEmpty() && tf_name.getText().trim().isEmpty() && tf_phoneNumber.getText().trim().isEmpty()){
+            bt_sign_up.setOnAction(event -> DBUtils.signUpUser(event,tf_username.getText(),tf_password.getText(),tf_name.getText(),tf_phoneNumber.getText()));
         }else {
             System.out.println("renseignez toutes les informations");
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -32,6 +36,6 @@ public class SignUpController implements Initializable {
             alert.show();
         }
 
-        bt_log_in.setOnAction(event -> DBUtils.changeScene(event,"sample.fxml","Log In!",null));
+        bt_log_in.setOnAction(event -> DBUtils.changeScene(event,"sample.fxml","Log In!",null, null));
     }
 }

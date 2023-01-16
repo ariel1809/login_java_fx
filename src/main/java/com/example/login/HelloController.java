@@ -23,6 +23,6 @@ public class HelloController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bt_login.setOnAction(event -> DBUtils.loginUser(event,tf_username.getText(),tf_password.getText()));
 
-        bt_sign_up.setOnAction(event -> DBUtils.changeScene(event, "sign-up.fxml", "Sign Up!", null));
+        bt_sign_up.setOnAction(event -> DBUtils.changeScene(event, "sign-up.fxml", "Sign Up!", null, null));
     }
 }
