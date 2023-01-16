@@ -115,13 +115,23 @@ public class DBUtils {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement1 = null;
         ResultSet resultSet = null;
+        ResultSet resultSet1 = null;
+        String retrievedName = null;
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/loginDB", "root","");
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
+            preparedStatement1 = connection.prepareStatement("SELECT name FROM users WHERE username = ?");
+            preparedStatement1.setString(1,username);
             preparedStatement.setString(1,username);
+            resultSet1 = preparedStatement1.executeQuery();
             resultSet = preparedStatement.executeQuery();
+
+            if (resultSet1.next()) {
+               retrievedName = resultSet1.getString("name");
+            }
 
             if (!resultSet.isBeforeFirst()){
                 System.out.println("Utilisateur introuvable");
@@ -131,10 +141,9 @@ public class DBUtils {
             }else {
                 while (resultSet.next()){
                     String retrievedPassword = resultSet.getString("password");
-                    System.out.println(retrievedPassword);
 
                     if (retrievedPassword.equals(password)){
-                        changeScene(event, "logged-in.fxml", "Bienvenue!", username, null);
+                        changeScene(event, "logged-in.fxml", "Bienvenue!", username, retrievedName);
                     }else {
                         System.out.println("password incorrect");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -154,9 +163,25 @@ public class DBUtils {
                 }
             }
 
+            if (resultSet1 != null){
+                try {
+                    resultSet1.close();
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
             if (preparedStatement != null){
                 try {
                     preparedStatement.close();
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (preparedStatement1 != null){
+                try {
+                    preparedStatement1.close();
                 }catch (SQLException e) {
                     e.printStackTrace();
                 }
