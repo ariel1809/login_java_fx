@@ -45,6 +45,12 @@
             <version>1.6.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version> <!-- Remplacez par la version appropriée -->
+        </dependency>
+
     </dependencies>
 
     <build>
